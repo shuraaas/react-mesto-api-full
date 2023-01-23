@@ -1,0 +1,11 @@
+.navbar__hum-item_active {
+  background: none;
+}
+
+.navbar__hum-item_active::after {
+  transform: translateY(-8px) rotate(45deg);
+}
+
+.navbar__hum-item_active::before {
+  transform: translateY(8px) rotate(-45deg);
+}

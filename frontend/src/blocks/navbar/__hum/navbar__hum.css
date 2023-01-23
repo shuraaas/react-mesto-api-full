@@ -1,0 +1,19 @@
+.navbar__hum {
+  width: 24px;
+  padding: 10px 0;
+  display: none;
+  font-size: 0;
+  color: transparent;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  position: absolute;
+  right: 30px;
+  z-index: 1;
+}
+
+@media (max-width: 550px) {
+  .navbar__hum {
+    display: block;
+  }
+}

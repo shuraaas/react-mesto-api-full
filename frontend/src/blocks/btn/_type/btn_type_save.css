@@ -1,0 +1,21 @@
+.btn_type_save {
+  padding: 14px 0;
+  border-radius: 2px;
+  background: #000;
+  transition: opacity .4s ease-in-out;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  color: #fff;
+}
+
+.btn_type_save:hover {
+  opacity: .8;
+}
+
+@media (min-width: 320px) and (max-width: 1279px) {
+  .btn_type_save {
+    font-size: 14px;
+    line-height: 16.94px;
+  }
+}

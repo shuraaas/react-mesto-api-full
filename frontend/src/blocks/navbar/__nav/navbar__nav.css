@@ -1,0 +1,15 @@
+.navbar__nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 550px) {
+  .navbar__nav {
+    flex-direction: column;
+    gap: 19px;
+  }
+}

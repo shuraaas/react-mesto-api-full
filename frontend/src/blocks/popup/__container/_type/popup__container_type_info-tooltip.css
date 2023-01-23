@@ -1,0 +1,13 @@
+.popup__container_type_info-tooltip {
+  padding: 60px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+@media (min-width: 320px) and (max-width: 1279px) {
+  .popup__container_type_info-tooltip {
+    padding: 50px 36px;
+    gap: 40px;
+  }
+}

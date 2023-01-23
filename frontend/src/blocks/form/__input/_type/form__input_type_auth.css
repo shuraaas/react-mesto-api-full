@@ -1,0 +1,6 @@
+.form__input_type_auth {
+  outline: none;
+  border-bottom: 2px solid #ccc;
+  color: #ccc;
+  background-color: #000;
+}

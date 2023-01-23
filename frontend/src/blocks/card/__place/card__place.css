@@ -1,0 +1,11 @@
+.card__place {
+  margin: 0;
+  grid-area: name;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29.05px;
+  color: #000;
+}

@@ -1,0 +1,15 @@
+.form__content {
+  padding: 36px 0 43px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 0;
+}
+
+@media (min-width: 320px) and (max-width: 1279px) {
+  .form__content {
+    padding-top: 68px;
+    padding-bottom: 46px;
+  }
+}

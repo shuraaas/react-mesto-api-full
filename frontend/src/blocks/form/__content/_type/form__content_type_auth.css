@@ -1,0 +1,10 @@
+.form__content_type_auth {
+  padding-bottom: calc(100vh - 550px);
+}
+
+@media (min-width: 320px) and (max-width: 1279px) {
+  .form__content_type_auth {
+    padding-top: 26px;
+    padding-bottom: calc(100vh - 440px);
+  }
+}

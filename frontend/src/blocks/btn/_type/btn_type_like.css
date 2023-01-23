@@ -1,0 +1,12 @@
+.btn_type_like {
+  justify-self: center;
+  outline: none;
+  width: 22px;
+  height: 19px;
+  padding-left: 25px;
+  background: url('../../../images/card-like.png') no-repeat center;
+}
+
+.btn_type_like:hover {
+  opacity: .5;
+}

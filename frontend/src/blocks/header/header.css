@@ -1,0 +1,25 @@
+.header {
+  padding: 45px 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(84, 84, 84, .7);
+}
+
+@media (min-width: 320px) and (max-width: 1279px) {
+  .header {
+    position: relative;
+    padding: 28px 30px;
+  }
+}
+
+@media (max-width: 550px) {
+  .header {
+    padding-top: 28px;
+    padding-right: 0;
+    padding-left: 0;
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 27px;
+  }
+}

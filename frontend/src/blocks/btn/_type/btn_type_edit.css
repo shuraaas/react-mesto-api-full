@@ -1,0 +1,23 @@
+.btn_type_edit {
+  width: 24px;
+  height: 24px;
+  outline: none;
+  grid-area: edit;
+  border: 1px solid #fff;
+  background: url('../../../images/edit-btn.svg') no-repeat center;
+}
+
+.btn_type_edit:hover {
+  opacity: .6;
+}
+
+@media (min-width: 320px) and (max-width: 1279px) {
+  .btn_type_edit {
+    width: 18px;
+    height: 18px;
+    background-size: 7.5px;
+    position: absolute;
+    top: 7px;
+    right: -28px;
+  }
+}
