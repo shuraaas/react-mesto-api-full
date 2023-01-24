@@ -11,6 +11,8 @@ dotenv.config();
 const { PORT, DB_ADDRESS } = process.env;
 const app = express();
 
+console.log(DB_ADDRESS);
+
 app.use(cors());
 mongoose.connect(DB_ADDRESS, { useNewUrlParser: true, useUnifiedTopology: true });
 app.use(bodyParser.json());
