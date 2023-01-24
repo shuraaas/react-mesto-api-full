@@ -7,11 +7,11 @@ import { errors } from 'celebrate';
 import { router } from './routes/index.js';
 import { errorHandler } from './middlewares/error-handler.js';
 
+dotenv.config();
 const { PORT, DB_ADDRESS } = process.env;
 const app = express();
 
 app.use(cors());
-dotenv.config();
 mongoose.connect(DB_ADDRESS, { useNewUrlParser: true, useUnifiedTopology: true });
 app.use(bodyParser.json());
 app.get('/crash-test', () => {
