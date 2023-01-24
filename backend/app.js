@@ -1,8 +1,8 @@
 import 'dotenv/config.js';
+import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-import cors from 'cors';
 import { errors } from 'celebrate';
 import { router } from './routes/index.js';
 import { errorHandler } from './middlewares/error-handler.js';
