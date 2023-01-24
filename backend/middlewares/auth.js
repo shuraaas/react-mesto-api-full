@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
-import { JWT_SECRET_KEY } from '../utils/constants.js';
 import { UnAuthtorizedErr } from '../errors/index.js';
+
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 const auth = (req, res, next) => {
   const { authorization } = req.headers;
@@ -8,12 +9,12 @@ const auth = (req, res, next) => {
     return next(new UnAuthtorizedErr('Необходима авторизация'));
   }
 
-  
+
 
   const token = authorization.replace('Bearer ', '');
   let payload;
   try {
-    payload = jwt.verify(token, JWT_SECRET_KEY);
+    payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret');
   } catch (err) {
     if (err.name === 'JsonWebTokenError') {
       return next(new UnAuthtorizedErr('Необходима авторизация'));
