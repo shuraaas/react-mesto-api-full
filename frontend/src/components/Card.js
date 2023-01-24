@@ -9,11 +9,11 @@ const Card = ({
   likes,
   onCardClick,
   onCardLike,
-  onCardDelete,
   onDeleteCardClick
 }) => {
   const currentUser = useContext(CurrentUserContext);
-  const isOwn = owner._id === currentUser._id;
+  const ownerId = owner._id || owner;
+  const isOwn = ownerId === currentUser._id;
   const isLiked = likes.some(item => item._id === currentUser._id);
   const cardDeleteButtonClassName = (
     `${isOwn ? 'btn btn_type_delete' : 'btn_hidden'}`

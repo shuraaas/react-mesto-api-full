@@ -1,8 +1,10 @@
 .content {
+  min-height: calc(100vh - 268px);
 }
 
 @media (min-width: 320px) and (max-width: 1279px) {
   .content {
     padding: 0 19px;
+    min-height: calc(100vh - 184px);
   }
 }

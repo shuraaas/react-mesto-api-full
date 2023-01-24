@@ -13,7 +13,7 @@ const Register = ({ onRegister }) => {
       />
       <div className="auth__signin">
         <p className='auth__login'>Уже зарегистрированы?</p>
-        <Link to="/sign-in" className="auth__login-link">Войти</Link>
+        <Link to="/signin" className="auth__login-link">Войти</Link>
       </div>
     </section>
   );

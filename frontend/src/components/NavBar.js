@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 
 function NavBar ({ loggedIn, userEmail, onLogout }) {
-  const routeMatch = useRouteMatch('/sign-in');
+  const routeMatch = useRouteMatch('/signin');
   const navbar = useRef(null);
   const burger = useRef(null);
 
@@ -22,8 +22,8 @@ function NavBar ({ loggedIn, userEmail, onLogout }) {
     <>
       <div className="navbar" ref={navbar}>
         <ul className="navbar__nav">
-          {(routeMatch && !loggedIn) && <Link className="navbar__link" to="/sign-up">Регистрация</Link>}
-          {(!routeMatch && !loggedIn) && <Link className="navbar__link" to="/sign-in">Войти</Link>}
+          {(routeMatch && !loggedIn) && <Link className="navbar__link" to="/signup">Регистрация</Link>}
+          {(!routeMatch && !loggedIn) && <Link className="navbar__link" to="/signin">Войти</Link>}
           {loggedIn && <li>{userEmail}</li>}
           {loggedIn && <li><button onClick={onLogout} className="btn navbar__link">Выйти</button></li>}
         </ul>

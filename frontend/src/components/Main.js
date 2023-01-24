@@ -39,7 +39,6 @@ const Main = ({
                 key={card._id}
                 onCardClick={onCardClick}
                 onCardLike={onCardLike}
-                onCardDelete={onCardDelete}
                 onDeleteCardClick={onDeleteCardClick}
                 {...card}
               />

@@ -16,8 +16,8 @@ const getCards = async (req, res, next) => {
 
 const createCard = async (req, res, next) => {
   try {
-    const newCard = await Card.create({ ...req.body, owner: req.user._id });
-    res.send(newCard);
+    const card = await Card.create({ ...req.body, owner: req.user._id });
+    res.send(card);
   } catch (err) {
     if (err.name === 'ValidationError') {
       next(new BadRequestErr('Что-то не так с данными'));
@@ -39,7 +39,7 @@ const deleteCard = async (req, res, next) => {
     }
 
     await Card.deleteOne(card._id);
-    return res.send(card);
+    return res.send({ message: 'Карточка удалена' });
   } catch (err) {
     return next(err);
   }

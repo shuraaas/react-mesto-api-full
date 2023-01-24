@@ -25,7 +25,7 @@ const App = () => {
   const [isInfoTooltipPopupData, setIsInfoTooltipPopupData] = useState({
     isOpen: false,
     title: '',
-    status: ''
+    status: '',
   });
 
   const [selectedCard, setSelectedCard] = useState(null);
@@ -36,20 +36,28 @@ const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const history = useHistory();
-  // Промисы
-  const promiseUserInfo = api.getUserInfo();
-  const promiseInitialCards = api.getInitialCards();
 
   useEffect(() => {
-    Promise.all([promiseUserInfo, promiseInitialCards])
-      .then(([userData, cards]) => {
-        setCurrentUser(userData);
-        setCards(cards);
-      })
-      .catch(err => console.error(err));
+    const token = localStorage.getItem('jwt');
 
-    tokenCheck();
-  }, []);
+    if (token) {
+      const promiseUserInfo = api.getUserInfo();
+      const promiseInitialCards = api.getInitialCards();
+
+      Promise.all([promiseUserInfo, promiseInitialCards])
+        .then(([userData, cards]) => {
+          setCurrentUser(userData);
+          setCards(cards.reverse());
+        })
+        .catch(err => console.error(err));
+    }
+  }, [loggedIn]);
+
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
+
+    if (token) tokenCheck(token);
+  }, [history]);
 
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true);
@@ -138,7 +146,7 @@ const App = () => {
           title: 'Вы успешно зарегистрировались!',
           status: true
         });
-        history.push('/sign-in');
+        history.push('/signin');
       })
       .catch(err => {
         console.log(err);
@@ -155,7 +163,7 @@ const App = () => {
       .then((data) => {
         if (!data.token) throw new Error('Missing token');
 
-        localStorage.setItem('token', data.token);
+        localStorage.setItem('jwt', data.token);
         setLoggedIn(true);
         setUserEmail(email);
         history.push('/cards');
@@ -164,22 +172,19 @@ const App = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('jwt');
     setLoggedIn(false);
-    history.push('/sign-in');
+    history.push('/signin');
   }
 
-  const tokenCheck = () => {
-    const jwt = localStorage.getItem('token');
-
-    if (!jwt) return;
-
-    auth.getContent(jwt).then((data) => {
-      setLoggedIn(true);
-      setUserEmail(data.data.email);
-      history.push("/cards");
-    })
-    .catch(err => console.error(err));
+  const tokenCheck = (token) => {
+    auth.getContent(token)
+      .then((data) => {
+        setLoggedIn(true);
+        setUserEmail(data.email);
+        history.push("/cards");
+      })
+      .catch(err => console.error(err));
   };
 
   return (
@@ -206,14 +211,14 @@ const App = () => {
                 />
                 <Footer />
             </ProtectedRoute>
-            <Route path="/sign-up">
+            <Route path="/signup">
               <Register onRegister={handleRegister} />
             </Route>
-            <Route path="/sign-in">
+            <Route path="/signin">
               <Login onLogin={handleLogin} />
             </Route>
             <Route>
-              {loggedIn ? <Redirect to="/cards" /> : <Redirect to="/sign-in" />}
+              {loggedIn ? <Redirect to="/cards" /> : <Redirect to="/signin" />}
             </Route>
           </Switch>
         </div>

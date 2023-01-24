@@ -16,4 +16,4 @@ app.use(router);
 app.use(errors());
 app.use(errorHandler);
 
-app.listen(PORT, () => console.log(`Server run on http://localhost:${PORT}/`));
+app.listen(PORT, () => console.log(`Server run on http://127.0.0.1:${PORT}/`));
