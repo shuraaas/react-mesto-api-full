@@ -8,10 +8,10 @@ import { router } from './routes/index.js';
 import { errorHandler } from './middlewares/error-handler.js';
 
 dotenv.config();
-const { PORT, DB_ADDRESS } = process.env;
+const { PORT = 3000 , DB_ADDRESS } = process.env;
 const app = express();
 
-console.log(process.env.NODE_ENV);
+// console.log(process.env.NODE_ENV);
 
 app.use(cors());
 mongoose.connect(DB_ADDRESS, { useNewUrlParser: true, useUnifiedTopology: true });
