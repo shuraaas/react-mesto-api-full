@@ -25,7 +25,7 @@
 
 ## Директории
 
-`/frontend` — бекендная часть проекта
+`/frontend` — бекендная часть проекта  
 `/backend` — фронтендная часть проекта
 
 ## Посмотреть страницу и макет:
@@ -40,8 +40,8 @@
 
 ## Для тестов:
 
-IP  158.160.7.101
-Frontend  https://shuraaas.nomoredomains.rocks/
+IP  158.160.7.101  
+Frontend  https://shuraaas.nomoredomains.rocks/  
 Backend  https://api.shuraaas.nomoredomains.rocks/
 
 ## Репозиторий
