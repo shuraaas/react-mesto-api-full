@@ -6,22 +6,25 @@ import bodyParser from 'body-parser';
 import { errors } from 'celebrate';
 import { router } from './routes/index.js';
 import { errorHandler } from './middlewares/error-handler.js';
+import { requestLogger, errorLogger } from './middlewares/logger.js';
 
 dotenv.config();
 const { PORT = 3000 , DB_ADDRESS } = process.env;
 const app = express();
 
-// console.log(process.env.NODE_ENV);
-
 app.use(cors());
 mongoose.connect(DB_ADDRESS, { useNewUrlParser: true, useUnifiedTopology: true });
 app.use(bodyParser.json());
+
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
+
+app.use(requestLogger);
 app.use(router);
+app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
 
