@@ -9,7 +9,7 @@ import { errorHandler } from './middlewares/error-handler.js';
 import { requestLogger, errorLogger } from './middlewares/logger.js';
 
 dotenv.config();
-const { PORT = 3000 , DB_ADDRESS } = process.env;
+const { PORT = 3000, DB_ADDRESS } = process.env;
 const app = express();
 
 app.use(cors());
