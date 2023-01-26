@@ -2,6 +2,8 @@ import bcrypt from 'bcryptjs';
 import { User } from '../models/user.js';
 import { generateToken } from '../utils/jwt.js';
 import {
+  USER_NOT_FOUND,
+  USER_BAD_REQUEST,
   MONGO_DUPLICATE_ERROR_CODE,
   SOLT_ROUNDS,
 } from '../utils/constants.js';
@@ -27,7 +29,7 @@ const registerUser = async (req, res, next) => {
     }
   } catch (err) {
     if (err.name === 'ValidationError') {
-      next(new BadRequestErr('Не валидный email или password'));
+      next(new BadRequestErr(USER_BAD_REQUEST));
     } else if (err.code === MONGO_DUPLICATE_ERROR_CODE) {
       next(new MongoDuplicateErr('Такой пользователь уже существует'));
     } else {
@@ -62,7 +64,7 @@ const getCurrentUser = async (req, res, next) => {
     if (currentUser) {
       res.send(currentUser);
     } else {
-      throw new NotFoundError('Пользователь с указанным ID не найден');
+      throw new NotFoundError(USER_NOT_FOUND);
     }
   } catch (err) {
     next(err);
@@ -76,11 +78,11 @@ const getUserById = async (req, res, next) => {
     if (user) {
       res.send(user);
     } else {
-      throw new NotFoundError('Пользователь с указанным ID не найден');
+      throw new NotFoundError(USER_NOT_FOUND);
     }
   } catch (err) {
     if (err.name === 'CastError') {
-      next(new BadRequestErr('Не валидный ID'));
+      next(new BadRequestErr(USER_BAD_REQUEST));
     } else {
       next(err);
     }
@@ -102,7 +104,7 @@ const updateUserProfile = async (req, res, next) => {
     res.send(updatedUser);
   } catch (err) {
     if (err.name === 'ValidationError') {
-      next(new BadRequestErr('Что-то не так с данными'));
+      next(new BadRequestErr(USER_BAD_REQUEST));
     } else {
       next(err);
     }
@@ -124,7 +126,7 @@ const updateUserAvatar = async (req, res, next) => {
     res.send(updatedUser);
   } catch (err) {
     if (err.name === 'ValidationError') {
-      next(new BadRequestErr('Что-то не так с данными'));
+      next(new BadRequestErr(USER_BAD_REQUEST));
     } else {
       next(err);
     }

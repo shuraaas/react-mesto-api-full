@@ -4,6 +4,10 @@ import {
   ForbiddenErr,
   NotFoundError,
 } from '../errors/index.js';
+import {
+  CARD_NOT_FOUND,
+  CARD_BAD_REQUEST,
+} from '../utils/constants.js';
 
 const getCards = async (req, res, next) => {
   try {
@@ -20,7 +24,7 @@ const createCard = async (req, res, next) => {
     res.send(card);
   } catch (err) {
     if (err.name === 'ValidationError') {
-      next(new BadRequestErr('Что-то не так с данными'));
+      next(new BadRequestErr(CARD_BAD_REQUEST));
     } else {
       next(err);
     }
@@ -31,11 +35,11 @@ const deleteCard = async (req, res, next) => {
   try {
     const card = await Card.findById(req.params.cardId);
     if (!card) {
-      return next(new NotFoundError('Карточка с таким ID не найдена'));
+      return next(new NotFoundError(CARD_NOT_FOUND));
     }
 
     if (card.owner.toString() !== req.user._id) {
-      return next(new ForbiddenErr('Нет доступа'));
+      return next(new ForbiddenErr('Вы не можете удалить чужую карточку'));
     }
 
     await Card.deleteOne(card._id);
@@ -56,13 +60,13 @@ const putCardLike = async (req, res, next) => {
     ).populate(['owner', 'likes']);
 
     if (!updatedCard) {
-      throw new NotFoundError('Карточка не найдена');
+      throw new NotFoundError(CARD_NOT_FOUND);
     } else {
       res.send(updatedCard);
     }
   } catch (err) {
     if (err.name === 'CastError') {
-      next(new BadRequestErr('Что-то не так с данными'));
+      next(new BadRequestErr(CARD_BAD_REQUEST));
     } else {
       next(err);
     }
@@ -80,13 +84,13 @@ const deleteCardLike = async (req, res, next) => {
     ).populate(['owner', 'likes']);
 
     if (!card) {
-      throw new NotFoundError('Карточка не найдена');
+      throw new NotFoundError(CARD_NOT_FOUND);
     } else {
       res.send(card);
     }
   } catch (err) {
     if (err.name === 'CastError') {
-      next(new BadRequestErr('Что-то не так с данными'));
+      next(new BadRequestErr(CARD_BAD_REQUEST));
     } else {
       next(err);
     }

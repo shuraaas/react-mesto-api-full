@@ -28,4 +28,4 @@ app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
 
-app.listen(PORT, () => console.log(`Server run on http://127.0.0.1:${PORT}/`));
+app.listen(PORT, () => console.log('server is running'));
