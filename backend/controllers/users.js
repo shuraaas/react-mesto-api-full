@@ -42,9 +42,6 @@ const authUser = async (req, res, next) => {
   const { email, password } = req.body;
   try {
     const user = await User.findUserByCredentials({ email, password });
-
-    console.log('authUser', user);
-
     const token = generateToken({ _id: user._id });
     res.send({ token });
   } catch (err) {
@@ -64,9 +61,6 @@ const getUsers = async (req, res, next) => {
 const getCurrentUser = async (req, res, next) => {
   try {
     const currentUser = await User.findById(req.user._id);
-
-    console.log('currentUser', currentUser);
-
     if (currentUser) {
       res.send(currentUser);
     } else {

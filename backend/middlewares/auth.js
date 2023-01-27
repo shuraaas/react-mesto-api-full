@@ -9,8 +9,6 @@ const auth = (req, res, next) => {
     return next(new UnAuthtorizedErr('Необходима авторизация'));
   }
 
-
-
   const token = authorization.replace('Bearer ', '');
   let payload;
   try {
