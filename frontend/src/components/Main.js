@@ -8,7 +8,6 @@ const Main = ({
   onAddPlace,
   onCardClick,
   onCardLike,
-  onCardDelete,
   onDeleteCardClick,
   cards
 }) => {

@@ -162,7 +162,6 @@ const App = () => {
     return auth.authorize(email, password)
       .then((data) => {
         if (!data.token) throw new Error('Missing token');
-
         localStorage.setItem('jwt', data.token);
         setLoggedIn(true);
         setUserEmail(email);

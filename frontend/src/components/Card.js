@@ -13,9 +13,7 @@ const Card = ({
 }) => {
   const currentUser = useContext(CurrentUserContext);
   const ownerId = owner._id || owner;
-
-  console.log(owner._id);
-  console.log(`ownerId`, ownerId);
+  // console.log(owner);
 
   const isOwn = ownerId === currentUser._id;
   const isLiked = likes.some(item => item._id === currentUser._id);
